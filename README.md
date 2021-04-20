@@ -1,3 +1,3 @@
 #### export pdf:
 
-![export pdf](https://github.com/book-note/PdfDemo/images/pdf.png)
+![export pdf](https://raw.githubusercontent.com/book-note/PdfDemo/master/images/pdf.png)
