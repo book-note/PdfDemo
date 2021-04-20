@@ -5,7 +5,6 @@ import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.os.Environment
 import android.print.PrintAttributes
-import android.provider.ContactsContract
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
@@ -86,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             document.close()
             Toast.makeText(this, "👌", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun drawNoteList(noteList: List<Note>) {
@@ -365,7 +363,6 @@ class MainActivity : AppCompatActivity() {
         }.toString()
     }
 
-
     private fun drawBookInfo(book: Book, canvas: Canvas, callback: () -> Unit) {
         val imageHwRatio = 1.4f
         val innerMarginOfBookInfo = 30
@@ -404,12 +401,12 @@ class MainActivity : AppCompatActivity() {
                 val translateX = margin + innerMarginOfBookInfo.toFloat()
                 val translateY = margin / 2f + (height - targetHeight).toFloat() / 2
 
-                // region 绘制书籍封面图片
+//                 region 绘制书籍封面图片
                 val layerId = canvas.saveLayer(
-                    0f,
-                    0f,
-                    bookInfoBackgroundRegion.bounds.right.toFloat(),
-                    bookInfoBackgroundRegion.bounds.bottom.toFloat(),
+                    translateX,
+                    translateY,
+                    translateX + targetWidth,
+                    translateY + targetHeight,
                     paintImage
                 )
                 val matrix = Matrix()
@@ -472,7 +469,7 @@ class MainActivity : AppCompatActivity() {
                         paintText,
                         bookInfoRegion.bounds.width(),
                         Layout.Alignment.ALIGN_NORMAL,
-                        0f, 0f, false
+                        1.0f, 0f, false
                     )
                     if (index == 0 || index == 1) {
                         bookInfoRegionTotalHeight += staticLayout.height
